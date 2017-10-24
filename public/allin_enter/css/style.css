@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+    font-family: '../fonts/sourcehansanstc-rRgalphabetic';
+    src: url('../fonts/sourcehansanstc-regular.woff2') format('woff2'),
+         url('../fonts/sourcehansanstc-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body{font-family: "Microsoft JhengHei"; }
+a:hover{ text-decoration:none}
+.navbar{ margin-bottom:0px; }
+.navbar-fixed-bottom, .navbar-fixed-top{ position:inherit;}
+.padd0{ padding:0px;}
+
+.bg li a{color:#4d4744!important;}
+.bg a{color:#150729!important;}
+.space{ padding-right:5px;}
+.space1{ padding-left:5px;}
+.bg{ background:#ffe207; color:#150729;  position:relative;}
+.logo{ position:absolute; left:50%; transform:translate(-50%,0); top:-22px; z-index:9999;}
+.shirt-box{ background:#ffeb51; padding: 35px 0 35px 35px; width:100%;}
+.shirt-box h1{ color:#4d4744; font-size:23px; line-height: 44px;  font-weight: bold;}
+.shirt-box h1 a{ color:#4d4744;}
+.almira{ background:#4d4744; padding: 35px 35px 35px 0px; width:100%; }
+.almira h2{ color:#ffe207; font-size:23px; text-align:right; line-height: 44px; font-weight: bold;}
+.almira h2 a{ color:#ffeb51 }
+.footer-bottom{background:#4d4744; color:#ffe207; line-height:53px; font-weight:bold;}
+
+.display{ display:flex;}
+.width100{ width:100%;}
+ ul.design{ padding:0px!important; margin:0px;}
+.design li{ position:relative; display:inline-block; list-style-type:none; padding:0 10px; font-weight:bold;}
+.design li a{color:#ffe207; padding:10px; line-height:53px; font-size:12px;}
+.design li:before{ content:'|'; width:1px; height:15px; display:block; position:absolute; left:-2px;}
+.design li:first-child:before{ content:'';}
+
+.shirt-box:hover h1, .almira:hover h2{animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@media screen and ( min-width:320px) and ( max-width:767px){
+	.logo{ position:relative; left:0; top:0px; transform:translate(0,0); z-index: 9999;}
+	.copyright{ text-align:center!important;}
+	.space{ padding-right:0px;}
+	.design li a{ padding:10px 0;}
+.space1{ padding-left:0px;}
+ ul.design{ text-align:center;}
+ .design li{ padding:0 6px;}
+	}
+	
+	@media screen and ( min-width:768px) and ( max-width:1024px){
+	.logo{ position:relative; left:0; top:0px; transform:translate(0,0); z-index: 9999;}
+	.space{ padding-right:0px;}
+.space1{ padding-left:0px;}
+ ul.design{ text-align:center;}
+ .copyright{ text-align:center!important;}
+	}
+	
+	
+.btn1 {
+    border: 2px solid #4d4744;
+    border-radius: 7px;
+    padding: 10px;
+    width: 85px;
+    color:#4d4744;
+}
+
+.btn2 {
+    border: 2px solid #ffe207;
+    border-radius: 7px;
+    padding: 10px;
+    width: 85px;
+    color:#ffe207;
+    
+}
+
+.go-right {
+    float:right;
+
+}

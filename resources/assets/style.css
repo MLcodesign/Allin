@@ -1,0 +1,344 @@
+.top_section {
+    float: left;
+    width: 100%;
+	padding: 10% 0% 0%;
+}
+.line_div{
+	float: left;
+    width: 100%;
+	height: 7px;
+	background: url(../images/line.png);
+}	
+.top_head {
+    float: left;
+    width: 100%;
+    background: #f8d306;
+    padding: 2% 3% 1%;
+}
+.top_img {
+    float: left;
+    width: 26%;
+}
+.top_text {
+    float: left;
+    width: 50%;
+    padding: 11% 0px 0px;
+}
+.top_text p {
+    font-size: 25px;
+    font-weight: bold;
+}
+.bottom_section {
+    background: url(../images/tab1_bg.png);
+    float: left;
+    width: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.single_imgae_box {
+    float: left;
+    width: 25%;
+    padding: 4%;
+}
+.top_arrow {
+    float: left;
+    width: 50%;
+    text-align: right;
+}
+.arrow_text {
+    float: left;
+    width: 30%;
+    text-align: left;
+    padding: 15px 20px;
+}
+
+.top_arrow_text {
+    float: left;
+    width: 100%;
+}
+.single_imgae_boxs {
+    float: left;
+    width: 25%;
+    padding: 2% 4%;
+}
+.box_images {
+    float: left;
+    width: 100%;
+}
+.top_box_images {
+    float: left;
+    width: 100%;
+}
+.bottom_box_images {
+    float: left;
+    width: 100%;
+}
+.btm_button {
+    float: right;
+    width: 10%;
+    padding: 0px 0px 4%;
+}
+.btm_button button.submit_btn {
+    background: #0077a5;
+    border: 1px solid #0077a5;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px 5px;
+}
+.top_num:before {
+    content: "\f111";
+    font-size: 50px;
+    font-family: FontAwesome;
+    color: f61d06;
+    /* box-shadow: 0px 5px 6px 0px red; */
+}
+.top_num span {
+    position: relative;
+    bottom: 53px;
+    left: 14px;
+    font-size: 25px;
+    color: white;
+}
+.top_num {
+    position: relative;
+    float: left;
+    width: 10%;
+    height: 0px;
+    bottom: 36px;
+}
+/********************************************************/
+/**************************tab2**************************/
+.top_heads{
+    float: left;
+    width: 100%;
+    background: #f3eed1;
+    padding: 0% 3% 0%;
+}
+.top_texts {
+    float: left;
+    width: 50%;
+    padding: 14% 0px 0px;
+}
+.top_texts p {
+    font-size: 25px;
+    font-weight: bold;
+	padding: 0px 15px;
+}
+.arrow_texts {
+    float: left;
+    width: 100%;
+    text-align: left;
+    /* padding: 15px 20px; */
+    text-align: center;
+	padding: 0% 0% 4%;
+}
+.bottom_sections {
+    background: url(../images/tab2_bg.png);
+    float: left;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: 100%;
+}
+.btm_buttons {
+    float: left;
+    width: 95%;
+    position: relative;
+    padding: 0px 0px 3%;
+    bottom: 20px;
+}
+.btm_buttons button.submit_btns {
+    background: #fe5f41;
+    border: 1px solid #fe5f41;
+    border-radius: 5px;
+    color: black;
+	float: right;
+    font-weight: bold;
+    padding: 16px 45px;
+}
+.lines_div {
+    float: left;
+    width: 100%;
+	height: 7px;
+	background: url(../images/line.png);
+}
+.arrow_texts p {
+    padding: 2% 0% 0%;
+    font-weight: bold;
+    font-size: 22px;
+}
+.box_imgs {
+    float: left;
+    width: 24%;
+    position: relative;
+    text-align: center;
+    padding: 5% 0% 3%;
+    left: 0;
+    top: 0;
+}
+.box_imgss {
+    /* float: left; */
+    /* width: 24%; */
+    float: left;
+    width: 24%;
+    text-align: center;
+    /* padding: 5% 0% 3%; */
+	position:relative;
+}
+.box_imgs img.box_imag {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+img.box_up {
+    position: absolute;
+    top: 77px;
+    left: 80px;
+}
+img.box_ups {
+    position: absolute;
+    top: 33px;
+    left: 67px;
+}
+/**********************************tab3*********************/
+.top_head_3 {
+    float: left;
+    width: 100%;
+    background: #f3eed1;
+    padding: 2% 3% 1%;
+}
+.bottom_section_3 {
+    background: url(../images/tab3_bg.png);
+    float: left;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.arrow_text_3 {
+    float: left;
+    width: 40%;
+    text-align: left;
+    padding: 15px 20px;
+}
+.arrow_text_3 p {
+    font-weight: bold;
+}
+.box_imgs_3 {
+    float: left;
+    width: 24%;
+    position: relative;
+    text-align: center;
+    padding: 5% 0% 3%;
+    left: 0;
+    top: 0;
+}
+.box_up_3 {
+    position: absolute;
+    top: 40px;
+    left: 42px;
+}
+.btm_button_3 {
+    float: right;
+    width: 10%;
+    padding: 10% 0px 3%;
+}
+.btm_button_3 button.submit_btn {
+    background: #0077a5;
+    border: 1px solid #0077a5;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px 5px;
+}
+.box_up_3 p {
+    position: absolute;
+    left: 60px;
+    width: 60px;
+    top: 16px;
+    font-weight: bold;
+}
+/***********************************pop up*********************/
+.pop_top_div {
+    float: left;
+    width: 100%;
+}
+.pop_img {
+    float: left;
+    width: 67%;
+}
+.pop_txt {
+    width: 33%;
+    float: left;
+}
+.pop_title {
+    float: left;
+    width: 40%;
+}
+.pop_desc {
+    float: left;
+    width: 60%;
+}
+.pop_title p {
+    color: #00c693;
+    font-weight: bold;
+    padding: 7px 0px;
+}
+.pop_desc p {
+    padding: 7px;
+}	
+.pop_up_btn {
+    float: left;
+    width: 80%;
+    padding: 10%;
+}
+.pop_up_btn_1 {
+    float: left;
+    width: 80%;
+    padding: 20px 30px;
+}
+button.modal_btn1 {
+    background: #fdfa00;
+    border: 1px solid #fdfa00;
+    border-radius: 5px;
+    padding: 6px;
+}
+.modal-body {
+   
+    height: 515px;
+}
+.pop_btm_dv {
+    float: left;
+    width: 100%;
+}
+.pop_imgs {
+    float: left;
+    width: 67%;
+}
+.pop_imag {
+    float: left;
+    width: 33%;
+    padding: 20px 0px;
+}
+.pop_home_img {
+    float: left;
+    width: 25%;
+    padding: 20px 0px;
+}
+/****************************combined********************/
+.tab_dv {
+    float: left;
+    width: 33%;
+	margin-right: 5px;
+}
+.top_section .tab_dv:last-child {
+    margin: 0px;
+}
+.top_img img.truck_img {
+    padding: 14px 0px;
+}
+.top_head_3 .top_num {
+    bottom: 40px;
+}
+.top_head .top_num {
+    bottom: 45px;
+}
