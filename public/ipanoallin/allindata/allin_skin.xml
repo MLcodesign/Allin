@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.19">
+
+    
+  <!-- Spot Style - Default Point Spot Style -->
+  <style name="IconDefaultPointSpotStyle"
+         url="%FIRSTXML%/spots/hotspot_animated_user_defaultpoint0.png"
+         visible="false"
+         frame="0"
+         lastframe="19"
+         framewidth="64"
+         frameheight="64"
+         stopspotsequence="false"
+         crop="0|0|64|64"
+         onloaded="startspotanimation(0.1);showPermanentTooltip(std);"
+
+
+         />
+
+
+
+
+
+
+<!-- ********** -->
+<!-- Analytics -->
+<!-- id : analytics -->
+<!-- ********** -->
+
+<ptplugin name="analytics" engine="kolorAnalytics">
+	<settings>
+		<option name="source" value="google" type="string" />
+		<option name="tracking_id" value="UA-83760509-1" type="string" />
+		<option name="force_ssl" value="false" type="bool" />
+		<option name="force_test" value="false" type="bool" />
+		<option name="start_page" value="allin" type="string" />
+		<option name="start_title" value="ALL IN 精品倉儲 | Welcome to ALL IN 精品倉儲" type="string" />
+		<option name="start_lang" value="zh" type="string" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+</ptplugin>
+
+<action name="kolorAnalyticsJsReady_analytics">
+	set(ptplugin[analytics].jsready, true);
+</action>
+
+<action name="activate_analytics">
+	if(ptplugin[analytics].jsready,
+		stopdelayedcall(delay_analytics_active);
+		js(invokePluginFunction(analytics, toggleDeactivation, false));
+	,
+		delayedcall(delay_analytics_active, 0.1, activate_analytics(););
+	);
+</action>
+
+<action name="deactivate_analytics">
+	if(ptplugin[analytics].jsready,
+		stopdelayedcall(delay_analytics_active);
+		js(invokePluginFunction(analytics, toggleDeactivation, true));
+	,
+		delayedcall(delay_analytics_active, 0.1, deactivate_analytics(););
+	);
+</action>
+
+<action name="sendPage_analytics">
+	if(ptplugin[analytics].jsready,
+		stopdelayedcall(delay_analytics_page);
+		js(invokePluginFunction(analytics, sendPageview, %1, %2));
+	,
+		delayedcall(delay_analytics_page,0.5,sendPage_analytics(%1,%2));
+	);
+</action>
+
+<!-- 
+sendEvent_analytics action :
+* param1 : category
+* param2 : action
+* param3 : label
+* param4 : number value
+-->
+<action name="sendEvent_analytics">
+	if(ptplugin[analytics].jsready,
+		stopdelayedcall(delay_analytics_event);
+		js(invokePluginFunction(analytics, sendEvent, %1, %2, %3, %4));
+	,
+		delayedcall(delay_analytics_event,0.5,sendEvent_analytics(%1,%2,%3,%4));
+	);
+</action>
+
+<action name="changeLanguage_analytics">
+	if(ptplugin[analytics].jsready,
+		stopdelayedcall(delay_analytics_lang);
+		js(invokePluginFunction(analytics, changeLanguage));
+	,
+		delayedcall(delay_analytics_lang,0.1,changeLanguage_analytics());
+	);
+</action>
+
+<events name="kolorAnalyticsEvents_analytics" 
+	keep="true"
+	onTourStart="sendEvent_analytics('panotour','tour start', 'ALL IN 精品倉儲 | Welcome to ALL IN 精品倉儲');"
+	onnewpano="sendPage_analytics(get(scene[get(xml.scene)].name), get(scene[get(xml.scene)].titleid));"
+	changetourlanguage="changeLanguage_analytics();"
+	/>
+
+<!-- ********** -->
+<!-- Header -->
+<!-- id : header -->
+<!-- ********** -->
+
+  <layer name="header"
+         keep="true"
+         url="%FIRSTXML%/graphics/header/header.png" 
+         bgalpha="1"
+         align="top"
+         x="0"
+         y="0"
+         zorder="2"
+         enabled="false"
+         capture="true"
+         visible="false"
+         height="50"
+         width="100%"
+         accuracy="1"
+         />
+
+  <events name="headerevents"
+    onTourStart="showheader();"
+    hidetourcontrols="hideheader();"
+    showtourcontrols="showheader();"
+    keep="true" />
+
+  <action name="hideheader">
+    set(layer[header].visible, false);
+  </action>
+  <action name="showheader">
+    set(layer[header].visible, true);
+  </action>
+
+<!-- ********** -->
+<!-- Logo -->
+<!-- id : logo -->
+<!-- ********** -->
+
+  <layer align="top"
+         x="0"
+         y="10"
+         zorder="3"
+         name="logo"
+         keep="true"
+         visible="false"
+         capture="false"
+
+         url="%FIRSTXML%/graphics/logo/logo-1.png" 
+         onclick="openurl(https://allin-storage.com,_blank);
+"
+
+         width="80"
+         height="prop"
+
+         />
+
+  <events name="logoevents" 
+    onTourStart="showlogo();"
+    keep="true" />
+
+  <action name="hidelogo">
+    set(layer[logo].visible, false);
+  </action>
+  <action name="showlogo">
+      set(layer[logo].visible, true);
+  </action>
+
+
+
+
+  <!-- ************* -->
+  <!-- Panorama Menu -->
+  <!-- ************* -->
+
+<ptplugin name="panoramaMenu" engine="kolorMenu">
+	<settings>
+		<option name="position" value="topright" type="string" />
+		<option name="orientation" value="horizontal" type="string" />
+		<option name="sub_orientation" value="vertical" type="string" />
+		<option name="margin_x" value="10" type="int" />
+		<option name="margin_y" value="5" type="int" />
+		<option name="background_color" value="ffffff" type="string" />
+		<option name="background_alpha" value="1" type="float" />
+		<option name="item_spacer" value="0" type="int" />
+		<option name="border_radius" value="0" type="int" />
+		<option name="full_size" value="false" type="bool" />
+		<option name="use_out_effect" value="true" type="bool" />
+		<option name="item_out_border_radius" value="0" type="int" />
+		<option name="item_hover_border_radius" value="0" type="int" />
+		<option name="item_out_border_width" value="0" type="int" />
+		<option name="item_hover_border_width" value="0" type="int" />
+		<option name="item_out_bg_color" value="ffffff" type="string" />
+		<option name="item_out_bg_alpha" value="1" type="float" />
+		<option name="item_out_font_color" value="4d4744" type="string" />
+		<option name="item_out_font_family" value="Arial" type="string" />
+		<option name="item_out_font_size" value="14" type="int" />
+		<option name="item_out_font_weight" value="normal" type="string" />
+		<option name="item_out_font_style" value="normal" type="string" />
+		<option name="item_out_font_decoration" value="normal" type="string" />
+		<option name="use_hover_effect" value="true" type="bool" />
+		<option name="item_hover_bg_color" value="ffffff" type="string" />
+		<option name="item_hover_bg_alpha" value="1" type="float" />
+		<option name="item_hover_font_color" value="4d4744" type="string" />
+		<option name="item_hover_font_family" value="Arial" type="string" />
+		<option name="item_hover_font_size" value="14" type="int" />
+		<option name="item_hover_font_weight" value="normal" type="string" />
+		<option name="item_hover_font_style" value="normal" type="string" />
+		<option name="item_hover_font_decoration" value="normal" type="string" />
+		<option name="padding_main" value="10" type="int" />
+		<option name="padding_sub" value="10" type="int" />
+		<option name="text_align" value="right" type="string" />
+		<option name="item_thumb_max_width" value="200" type="int" />
+		<option name="item_thumb_max_height" value="100" type="int" />
+		
+		<option name="zorder" value="4" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	<internaldata>
+				<group name="group_1"
+						titleID="panogroup115_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup115"> 
+
+				
+				
+						<item name="group_1_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano114')"
+								titleID="pano114_title"
+								thumbnail=""
+							cssClass="pano114">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+				<group name="group_2"
+						titleID="panogroup113_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup113"> 
+
+				
+				
+						<item name="group_2_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano112')"
+								titleID="pano112_title"
+								thumbnail=""
+							cssClass="pano112">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+	</internaldata>
+</ptplugin>
+
+<action name="kolorMenuJsReady_panoramaMenu">
+	set(ptplugin[panoramaMenu].jsready, true);
+</action>
+
+<action name="showKolorMenu_panoramaMenu">
+	
+	ifnot(ptplugin[panoramaMenu].isOpen,
+		stopdelayedcall(delay_panoramaMenu);
+		set(ptplugin[panoramaMenu].isOpen, true);
+		set(ptplugin[panoramaMenu].displayed, true);
+		js(openKolorMenu(panoramaMenu));
+	,
+		if(ptplugin[panoramaMenu].jsready,
+			stopdelayedcall(delay_panoramaMenu);
+			set(ptplugin[panoramaMenu].displayed, true);
+			js(invokePluginFunction(panoramaMenu, showKolorMenu));
+		,
+			delayedcall(delay_panoramaMenu, 0.1, showKolorMenu_panoramaMenu(););
+		);
+	);
+</action>
+
+<action name="hideKolorMenu_panoramaMenu">
+	if(ptplugin[panoramaMenu].jsready,
+		stopdelayedcall(delay_panoramaMenu);
+		set(ptplugin[panoramaMenu].displayed, false);
+		js(invokePluginFunction(panoramaMenu, hideKolorMenu));
+	,
+		delayedcall(delay_panoramaMenu, 0.1, hideKolorMenu_panoramaMenu(););
+	);
+</action>
+
+
+<action name="changeLanguage_panoramaMenu">
+	if(ptplugin[panoramaMenu].jsready,
+		stopdelayedcall(delay_panoramaMenu);
+		js(invokePluginFunction(panoramaMenu, changeLanguage));
+	,
+		delayedcall(delay_panoramaMenu, 0.1, changeLanguage_panoramaMenu(););
+	);
+</action>
+
+
+<events name="kolorMenuEvents_panoramaMenu" 
+	keep="true"
+	
+	
+	onTourStart="showKolorMenu_panoramaMenu();"
+	changetourlanguage="changeLanguage_panoramaMenu"
+/>
+
+<!-- ********** -->
+<!-- share Button1 -->
+<!-- id : button1 -->
+<!-- ********** -->
+
+  <layer name="button1"
+         keep="true"
+         url="%FIRSTXML%/graphics/button1/icon_share.png" 
+         align="topleft"
+         x="15"
+         y="10"
+         zorder="5"
+         visible="false"
+         onclick="button1OnClick"
+         width="25"
+         height="prop"
+         />
+  <action name="button1OnClick">if(ptplugin[socialShare].isOpen,closeKolorBox_socialShare();,showSocialShare_socialShare(););
+
+
+  </action>
+
+  <events name="button1events" 
+    onTourStart="showbutton1();"
+    hidetourcontrols="hidebutton1();" 
+    showtourcontrols="showbutton1();" 
+    keep="true" />
+  <action name="hidebutton1">set(layer[button1].visible, false);</action>
+  <action name="showbutton1">if(tour_displaycontrols,set(layer[button1].visible, true);,hidebutton1(););</action>
+
+
+<!-- ********** -->
+<!-- pic Button5 -->
+<!-- id : button5 -->
+<!-- ********** -->
+
+  <layer name="button5"
+         keep="true"
+         url="%FIRSTXML%/graphics/button5/icon_pic.png" 
+         align="topleft"
+         x="85"
+         y="10"
+         zorder="6"
+         visible="false"
+         onclick="button5OnClick"
+         width="25"
+         height="prop"
+         />
+  <action name="button5OnClick">if(ptplugin[gallery].isOpen,closeKolorBox_gallery();,showGallery_gallery(););
+
+
+  </action>
+
+  <events name="button5events" 
+    onTourStart="showbutton5();"
+    hidetourcontrols="hidebutton5();" 
+    showtourcontrols="showbutton5();" 
+    keep="true" />
+  <action name="hidebutton5">set(layer[button5].visible, false);</action>
+  <action name="showbutton5">if(tour_displaycontrols,set(layer[button5].visible, true);,hidebutton5(););</action>
+
+
+<!-- ********** -->
+<!-- FB Button -->
+<!-- id : button -->
+<!-- ********** -->
+
+  <layer name="button"
+         keep="true"
+         url="%FIRSTXML%/graphics/button/icon_fb2.png" 
+         align="topleft"
+         x="50"
+         y="10"
+         zorder="7"
+         visible="false"
+         onclick="buttonOnClick"
+         width="25"
+         height="prop"
+         />
+  <action name="buttonOnClick">openurl(https://www.facebook.com/allinstorage/,_blank);
+
+
+  </action>
+
+  <events name="buttonevents" 
+    onTourStart="showbutton();"
+    hidetourcontrols="hidebutton();" 
+    showtourcontrols="showbutton();" 
+    keep="true" />
+  <action name="hidebutton">set(layer[button].visible, false);</action>
+  <action name="showbutton">if(tour_displaycontrols,set(layer[button].visible, true);,hidebutton(););</action>
+
+
+<!-- ********** -->
+<!-- Social Share -->
+<!-- id : socialShare -->
+<!-- ********** -->
+
+<ptplugin name="socialShare" engine="kolorBox">
+	<settings>
+		<option name="position" value="top" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="70" type="int" />
+		<option name="external_padding" value="15" type="int" />
+		<option name="animate" value="false" type="bool" />
+		<option name="draggable_box" value="false" type="bool" />
+		<option name="container_auto_size" value="true" type="bool" />
+		<option name="container_color" value="ffffff" type="string" />
+		<option name="container_alpha" value="0" type="float" />
+		<option name="container_topleft_border_radius" value="0" type="int" />
+		<option name="container_topright_border_radius" value="0" type="int" />
+		<option name="container_bottomleft_border_radius" value="0" type="int" />
+		<option name="container_bottomright_border_radius" value="0" type="int" />
+		<option name="container_border_width" value="0" type="int" />
+		<option name="container_border_color" value="ffffff" type="string" />
+		<option name="container_border_alpha" value="0" type="float" />
+		<option name="overlay_displayed" value="false" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="social_btn" value="facebook#twitter#google#linkedin" type="string" />
+		<option name="social_orientation" value="horizontal" type="string" />
+		<option name="social_btn_size" value="30" type="int" />
+		<option name="inner_margin" value="10" type="int" />
+		
+		
+		<option name="title_displayed" value="false" type="bool" />
+		<option name="caption_displayed" value="false" type="bool" />
+		<option name="close_displayed" value="false" type="bool" />
+		<option name="close_position" value="topright" type="string" />
+		<option name="close_text" value="socialShareclose_text" type="string" />
+
+		<option name="close_callback" value="invokeKrFunction('closeKolorBoxCallback_socialShare')" type="string" />
+		<option name="zorder" value="8" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	<internaldata>
+		
+	</internaldata>
+</ptplugin>
+
+<action name="kolorBoxJsReady_socialShare">
+	set(ptplugin[socialShare].jsready, true);
+
+</action>
+
+
+
+<action name="showSocialShare_socialShare">
+	ifnot(ptplugin[socialShare].isOpen,
+		set(ptplugin[socialShare].isOpen, true);
+		pauseautorotation(forceplugin);
+
+			js(invokePluginFunction(socialShare, loadSingleArrayItem, social));
+		events.dispatch(onremovedisplayedobject);
+	);
+</action>
+
+<action name="toggleSocialShare_socialShare">
+	js(invokePluginFunction(socialShare, toggleKolorBox, %1));
+</action>
+
+
+<action name="closeKolorBox_socialShare">
+	js(invokePluginFunction(socialShare, closeKolorBox));
+</action>
+
+<action name="closeKolorBoxCallback_socialShare">
+	resumeautorotation(forceplugin);
+
+	
+	set(ptplugin[socialShare].isOpen, false);
+</action>
+
+<action name="changeLanguage_socialShare">
+	if(ptplugin[socialShare].jsready,
+		js(invokePluginFunction(socialShare, changeLanguage));
+	);
+</action>
+
+<events name="kolorBoxEvents_socialShare" 
+	keep="true"
+	onsharetour="showSocialShare_socialShare();" 
+	
+	
+	changetourlanguage="changeLanguage_socialShare();"
+	/>
+
+<!-- ********** -->
+<!-- Footer -->
+<!-- id : footer -->
+<!-- ********** -->
+
+  <layer name="footer"
+         keep="true"
+         type="container"
+         bgcolor="0xffe207"
+         bgalpha="1"
+         align="bottom"
+         x="0"
+         y="0"
+         zorder="9"
+         enabled="false"
+         capture="true"
+         visible="false"
+         height="50"
+         width="100%"
+         accuracy="1"
+         />
+
+  <events name="footerevents" 
+    onTourStart="showfooter();"
+    hidetourcontrols="hidefooter();"
+    showtourcontrols="showfooter();"
+    keep="true" />
+
+  <action name="hidefooter">
+    set(layer[footer].visible, false);
+  </action>
+  <action name="showfooter">
+    set(layer[footer].visible, true);
+  </action>
+
+<!-- ********** -->
+<!-- phoneicon -->
+<!-- id : button3 -->
+<!-- ********** -->
+
+  <layer name="button3"
+         keep="true"
+         url="%FIRSTXML%/graphics/button3/phone.png" 
+         align="bottomleft"
+         x="15"
+         y="15"
+         zorder="10"
+         visible="false"
+         handcursor="false"
+         enabled="false"
+         />
+
+  <events name="button3events" 
+    onTourStart="showbutton3();"
+    hidetourcontrols="hidebutton3();" 
+    showtourcontrols="showbutton3();" 
+    keep="true" />
+  <action name="hidebutton3">set(layer[button3].visible, false);</action>
+  <action name="showbutton3">if(tour_displaycontrols,set(layer[button3].visible, true);,hidebutton3(););</action>
+
+
+<!-- ********** -->
+<!-- car icon -->
+<!-- id : button4 -->
+<!-- ********** -->
+
+  <layer name="button4"
+         keep="true"
+         url="%FIRSTXML%/graphics/button4/box5_s.png" 
+         align="bottomright"
+         x="20"
+         y="50"
+         zorder="11"
+         visible="false"
+         onclick="button4OnClick"
+         width="120"
+         height="prop"
+         />
+  <action name="button4OnClick">openurl(https://allin-storage.com,_blank);
+
+
+  </action>
+
+  <events name="button4events" 
+    onTourStart="showbutton4();"
+    hidetourcontrols="hidebutton4();" 
+    showtourcontrols="showbutton4();" 
+    keep="true" />
+  <action name="hidebutton4">set(layer[button4].visible, false);</action>
+  <action name="showbutton4">if(tour_displaycontrols,set(layer[button4].visible, true);,hidebutton4(););</action>
+
+
+<!-- ********** -->
+<!-- Loading Information -->
+<!-- id : loaderinfo -->
+<!-- ********** -->
+
+  <events name="loaderinfoevent" onxmlcomplete="loaderinfoupdate();" keep="true"/>
+
+  <action name="loaderinfoupdate">
+    if(scene[get(xml.scene)].video,
+      set(layer[loaderinfotextfield].visible, false);
+    ,
+      if (progress.progress == 1,
+        delayedcall(0.5, set(layer[loaderinfotextfield].visible, false); );
+      ,
+        set(layer[loaderinfotextfield].visible, true);
+      );
+      mul(progresstext, get(progress.progress),100);
+      roundval(progresstext);
+      txtadd(progresstext, get(progresstext), %);
+      set(layer[loaderinfotextfield].html, get(progresstext));
+      ifnot(progress.progress GE 1, delayedcall(0.01, loaderinfoupdate() ));
+    );
+  </action>
+
+  <layer name="loaderinfotextfield"
+         keep="true"
+         zorder="12"
+         url="%FIRSTXML%/graphics/textfield.swf"
+         align="bottom"
+         x="0"
+         y="50"
+         borderwidth="0"
+         background="false"
+         autoheight="true"
+         autowidth="auto"
+         capture="false"
+         handcursor="false"
+         selectable="false"
+         alpha="1"
+         visible="true"
+         css="
+         text-align:center;
+         color:#585858;
+         font-family:Arial;
+         font-size:24px;
+         "
+  />
+
+<!-- ********** -->
+<!-- Gallery -->
+<!-- id : gallery -->
+<!-- ********** -->
+
+<ptplugin name="gallery" engine="kolorBox">
+	<settings>
+		<option name="position" value="center" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="external_padding" value="15" type="int" />
+		<option name="draggable_box" value="false" type="bool" />
+		<option name="slideshow_autoplay" value="false" type="bool" />
+		<option name="slideshow" value="5000" type="int" />
+		<option name="container_auto_size" value="true" type="bool" />
+		<option name="container_width" value="100" type="int" />
+		<option name="container_width_unit" value="percent" type="string" />
+		<option name="container_height" value="100" type="int" />
+		<option name="container_height_unit" value="percent" type="string" />
+		<option name="container_color" value="ffffff" type="string" />
+		<option name="container_alpha" value="0" type="float" />
+		<option name="container_topleft_border_radius" value="0" type="int" />
+		<option name="container_topright_border_radius" value="0" type="int" />
+		<option name="container_bottomleft_border_radius" value="0" type="int" />
+		<option name="container_bottomright_border_radius" value="0" type="int" />
+		<option name="container_border_width" value="0" type="int" />
+		<option name="container_border_color" value="ffffff" type="string" />
+		<option name="container_border_alpha" value="0" type="float" />
+		<option name="overlay_displayed" value="true" type="bool" />
+		<option name="overlay_color" value="ffe207" type="string" />
+		<option name="overlay_alpha" value="1" type="float" />
+
+		<option name="item_border_width" value="0" type="int" />
+		<option name="item_border_color" value="ffffff" type="string" />
+		<option name="item_border_alpha" value="1" type="float" />
+		
+		<option name="title_displayed" value="true" type="bool" />
+		<option name="title_position" value="top" type="string" />
+		<option name="title_font" value="Verdana" type="string" />
+		<option name="title_size" value="18" type="int" />
+		<option name="title_weight" value="normal" type="string" />
+		<option name="title_style" value="normal" type="string" />
+		<option name="title_decoration" value="none" type="string" />
+		<option name="title_color" value="000000" type="string" />
+		
+		<option name="caption_displayed" value="false" type="bool" />
+		
+		<option name="play_displayed" value="true" type="bool" />
+		<option name="play_position" value="bottomleft" type="string" />
+		<option name="play_text" value="galleryplay_text" type="string" />
+
+
+
+
+		<option name="navigation_displayed" value="true" type="bool" />
+		<option name="navigation_position" value="bottom" type="string" />
+		<option name="counter_color" value="666666" type="string" />
+		<option name="navprev_text" value="gallerynavprev_text" type="string" />
+		<option name="navnext_text" value="gallerynavnext_text" type="string" />
+
+
+
+
+		<option name="navigation_arrows" value="true" type="bool" />
+
+
+
+
+		<option name="fullscreen_displayed" value="true" type="bool" />
+		<option name="fullscreen_position" value="topleft" type="string" />
+		<option name="fullscreen_text" value="galleryfullscreen_text" type="string" />
+
+
+
+
+		<option name="close_displayed" value="true" type="bool" />
+		<option name="close_position" value="topright" type="string" />
+		<option name="close_text" value="galleryclose_text" type="string" />
+
+		<option name="close_callback" value="invokeKrFunction('closeKolorBoxCallback_gallery')" type="string" />
+		<option name="zorder" value="13" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	<internaldata>
+		<item name="item_1" title="gallerypicture_title5" caption="gallerypicture_caption5" value="allindata/graphics/gallery/_mg_5773.jpg"/>
+		<item name="item_2" title="gallerypicture_title7" caption="gallerypicture_caption7" value="allindata/graphics/gallery/_mg_5758.jpg"/>
+		<item name="item_3" title="gallerypicture_title1" caption="gallerypicture_caption1" value="allindata/graphics/gallery/_mg_5785.jpg"/>
+		<item name="item_4" title="gallerypicture_title6" caption="gallerypicture_caption6" value="allindata/graphics/gallery/_mg_5761.jpg"/>
+		<item name="item_5" title="gallerypicture_title3" caption="gallerypicture_caption3" value="allindata/graphics/gallery/_mg_5776.jpg"/>
+		<item name="item_6" title="gallerypicture_title4" caption="gallerypicture_caption4" value="allindata/graphics/gallery/_mg_5774.jpg"/>
+		<item name="item_7" title="gallerypicture_title2" caption="gallerypicture_caption2" value="allindata/graphics/gallery/_mg_5780.jpg"/>
+		<item name="item_8" title="gallerypicture_title0" caption="gallerypicture_caption0" value="allindata/graphics/gallery/_mg_5797.jpg"/>
+	</internaldata>
+</ptplugin>
+
+<action name="kolorBoxJsReady_gallery">
+	set(ptplugin[gallery].jsready, true);
+</action>
+
+<action name="showGallery_gallery">
+	ifnot(ptplugin[gallery].isOpen,
+		set(ptplugin[gallery].isOpen, true);
+		set(ptplugin[gallery].doNotDeleteMe, false);
+		set(gallery_boxurl, %1);
+		pauseautorotation(forceplugin);
+
+		js(invokePluginFunction(gallery, openKolorBox, %1));
+		events.dispatch(onremovedisplayedobject);
+	,
+		if(%1 !== null AND %1 != gallery_boxurl,
+			closeKolorBox_gallery();
+			delayedcall(0.3,showGallery_gallery(%1););
+		);
+	);
+</action>
+
+<action name="toggleGallery_gallery">
+	js(invokePluginFunction(gallery, toggleKolorBox, %1));
+</action>
+
+
+<action name="closeKolorBox_gallery">
+	js(invokePluginFunction(gallery, closeKolorBox));
+</action>
+
+<action name="closeKolorBoxCallback_gallery">
+	resumeautorotation(forceplugin);
+
+	set(ptplugin[gallery].isOpen, false);
+</action>
+
+<action name="changeLanguage_gallery">
+	if(ptplugin[gallery].jsready,
+		js(invokePluginFunction(gallery, changeLanguage));
+	,
+		delayedcall(delay_gallery, 0.1, changeLanguage_gallery(););
+	);
+</action>
+
+<events name="kolorBoxEvents_gallery" 
+	keep="true"
+	changetourlanguage="changeLanguage_gallery();"
+	/>
+
+<!-- ********** -->
+<!-- Simple Button6 -->
+<!-- id : button6 -->
+<!-- ********** -->
+
+  <layer name="button6"
+         keep="true"
+         url="%FIRSTXML%/graphics/button6/pic.png" 
+         align="bottomleft"
+         x="20"
+         y="38"
+         zorder="14"
+         visible="false"
+         onclick="button6OnClick"
+         width="150"
+         height="prop"
+         />
+  <action name="button6OnClick">if(ptplugin[gallery].isOpen,closeKolorBox_gallery();,showGallery_gallery(););
+
+
+  </action>
+
+  <events name="button6events" 
+    onTourStart="showbutton6();"
+    hidetourcontrols="hidebutton6();" 
+    showtourcontrols="showbutton6();" 
+    keep="true" />
+  <action name="hidebutton6">set(layer[button6].visible, false);</action>
+  <action name="showbutton6">if(tour_displaycontrols,set(layer[button6].visible, true);,hidebutton6(););</action>
+
+
+</krpano>
