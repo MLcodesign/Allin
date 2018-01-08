@@ -45,40 +45,37 @@ Route::model('menus', Menu::class);
 Route::model('orders', Order::class);
 Route::model('payments', Payment::class);
 Route::model('logistics', Logistic::class);
-Route::model('deposits',Deposit::class);
-Route::model('exchanges',Exchange::class);
+Route::model('deposits', Deposit::class);
+Route::model('exchanges', Exchange::class);
 Route::model('categories', Category::class);
 
 Route::group(['middleware' => ['web']], function () {
-
     Route::get('/page/{slug}', 'FrontendController@staticPages');
     Route::get('admin/edit-post/{id}', 'Admin\DepositsController@editblogpost');
-	Route::post('admin/edit-post-save/{id}', 'Admin\DepositsController@editsaveblogpost');
-	
-	Route::get('admin/posts/create', 'Admin\DepositsController@createnewpost');
-	Route::get('admin/destroy-post/{id}', 'Admin\DepositsController@destroypost');
-	Route::post('admin/save-new-post', 'Admin\DepositsController@savenewpost');
-	
-	Route::get('/clear-cache', function() {
-		$exitCode = Artisan::call('cache:clear');
-		// return what you want
-	});
+    Route::post('admin/edit-post-save/{id}', 'Admin\DepositsController@editsaveblogpost');
 
-	Route::get('/', 'FrontendController@allin_enter');
+    Route::get('admin/posts/create', 'Admin\DepositsController@createnewpost');
+    Route::get('admin/destroy-post/{id}', 'Admin\DepositsController@destroypost');
+    Route::post('admin/save-new-post', 'Admin\DepositsController@savenewpost');
+
+    Route::get('/clear-cache', function () {
+        $exitCode = Artisan::call('cache:clear');
+        // return what you want
+    });
+
+    Route::get('/', 'FrontendController@allin_enter');
     Route::get('/ondemandstorage', 'FrontendController@index');
-	Route::get('/selfstorage', 'FrontendController@self_storage');
+    Route::get('/selfstorage', 'FrontendController@self_storage');
     Route::get('/updateboxnameajax', 'MemberController@updateboxnameajax');
-	Route::post('/updateboximgajax', 'MemberController@updateboximgajax');
+    Route::post('/updateboximgajax', 'MemberController@updateboximgajax');
 
     Route::get('/booking/{step?}', 'MemberController@booking_page');
     Route::post('/booking/{step?}', 'MemberController@booking');
 
-
     Route::post('/new-user-coupon', 'Admin\CouponController@newusercoupon');
-	Route::post('/normal-user-coupon', 'Admin\CouponController@normalusercoupon');
-	
-    Route::get('/pricing', 'FrontendController@pricing');
+    Route::post('/normal-user-coupon', 'Admin\CouponController@normalusercoupon');
 
+    Route::get('/pricing', 'FrontendController@pricing');
 
     /**
     * New MemberController
@@ -86,11 +83,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/schedule-pickup', 'NewMemberController@schedule_pickup_get');
     Route::post('/schedule-pickup', 'NewMemberController@schedule_pickup_post');
     Route::post('/schedule-pickup-post', 'NewMemberController@schedule_pickup_post');
-    
+
     Route::get('/schedule-item', 'NewMemberController@schedule_item_get');
     Route::post('/schedule-item', 'NewMemberController@schedule_item_post');
     Route::post('/schedule-item-post', 'NewMemberController@schedule_item_post');
-    
+
     Route::get('/schedule-new-box', 'NewMemberController@schedule_new_box');
     Route::get('/schedule-new-box/confirm', 'NewMemberController@schedule_new_box');
     Route::post('/schedule-new-box', 'NewMemberController@schedule_new_box');
@@ -98,7 +95,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('checkout', 'NewMemberController@checkout');
     Route::get('/schedule-pickup-large', 'NewMemberController@schedule_pickup_get');
     //Route::post('/schedule-pickup-large', 'NewMemberController@schedule_pickup_large');
-    
+
     /**
     * Orig MemberController
     */
@@ -109,17 +106,17 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/contact-us', 'FrontendController@contactUs');
     //Route::get('/view-finder', 'FrontendController@viewfinder');
     Route::get('/ipano', 'FrontendController@ipano');
-	
-	Route::get('/latest-news', 'BlogController@index');
-	Route::get('/blog/{id}', 'BlogController@getSingle');
-	Route::post('/check-coupon-ajax','CouponController@couponcheckajax');
+
+    Route::get('/latest-news', 'BlogController@index');
+    Route::get('/blog/{id}', 'BlogController@getSingle');
+    Route::post('/check-coupon-ajax', 'CouponController@couponcheckajax');
 
     Route::post('/contact-us', 'FrontendController@contactUsSubmit');
-	
-	Route::get('resendVerify', 'FrontendController@resendVerify');
-	Route::post('resendVerify', 'FrontendController@resendVerifyAction');
-	
-	Route::get('testAlert', 'FrontendController@testAlert');
+
+    Route::get('resendVerify', 'FrontendController@resendVerify');
+    Route::post('resendVerify', 'FrontendController@resendVerifyAction');
+
+    Route::get('testAlert', 'FrontendController@testAlert');
 
     Route::get('/blog', 'FrontendController@blog');
 
@@ -137,22 +134,20 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('payment-return', 'SubscriptionController@packageSubscriptionCapture');
 
     Route::post('package/subscribe/success', 'SubscriptionController@packageSubscriptionCapture');
-    
+
     Route::get('payment-success', 'SubscriptionController@subscriptionCapture');
     Route::post('payment-success', 'SubscriptionController@subscriptionCapture');
-	Route::post('payment-success-notify', 'SubscriptionController@subscriptionCaptureTwo');
+    Route::post('payment-success-notify', 'SubscriptionController@subscriptionCaptureTwo');
 });
 
 Route::group(['middleware' => ['web','auth.check_user']], function () {
     /**
      * Authentication routes
      */
-
     Route::get('auth/login/{provider?}', [
         'uses' => 'Auth\FacebookController@getSocialAuth',
         'as' => 'auth.getSocialAuth'
     ]);
-
 
     Route::get('auth/login/callback/{provider?}', [
         'uses' => 'Auth\FacebookController@getSocialAuthCallback',
@@ -179,32 +174,27 @@ Route::group(['middleware' => ['web','auth.check_user']], function () {
      * Admin routes
      */
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-
         Route::controllers([
             'datatables' => 'Admin\DatatablesController',
         ]);
 
         Route::get('/dashboard', 'Admin\DashboardController@index');
-		
-		//Top Bar News
-		Route::get('/top-bar-news', 'Admin\DepositsController@edittopbarnews');
+
+        // Top Bar News
+        Route::get('/top-bar-news', 'Admin\DepositsController@edittopbarnews');
         Route::post('/save-top-news', 'Admin\DepositsController@savetopbarnews');
-		
-		
-	    
-		
-		
+
         Route::resource('orders', 'Admin\OrdersController');
         Route::resource('logistics', 'Admin\LogisticsController');
 
         Route::resource('coupon', 'Admin\CouponController');
 
-        Route::get('getcoupon', function(Request $request){
+        Route::get('getcoupon', function (Request $request) {
             $coupon = $request->get('coupon');
             $cdata = DB::table('coupon')->where('code', $coupon)->first();
-            if(count($cdata) > 0) {
+            if (count($cdata) > 0) {
                 return response()->json(['status' => 'false' , 'message' => $cdata->point ]);
-            } else{
+            } else {
                 return response()->json(['status' => 'false' , 'message' => 'Not found coupon.']);
             }
         });
@@ -212,7 +202,7 @@ Route::group(['middleware' => ['web','auth.check_user']], function () {
         Route::resource('payments', 'Admin\PaymentsController');
         Route::resource('deposits', 'Admin\DepositsController');
         Route::resource('exchanges', 'Admin\ExchangesController');
-        Route::resource('categories','Admin\CategoriesController');
+        Route::resource('categories', 'Admin\CategoriesController');
 
         Route::resource('users', 'Admin\UsersController');
 
@@ -232,24 +222,23 @@ Route::group(['middleware' => ['web','auth.check_user']], function () {
 
         Route::resource('menus', 'Admin\MenusController');
 
-	    Route::get('adminMenus', 'Admin\AdminMenusController@index');
-	    Route::post('adminMenus', 'Admin\AdminMenusController@index');
+        Route::get('adminMenus', 'Admin\AdminMenusController@index');
+        Route::post('adminMenus', 'Admin\AdminMenusController@index');
 
-	    Route::get('frontpages/{id}', 'Admin\DashboardController@frontpages');
-	    Route::post('frontpages', 'Admin\DashboardController@update_frontpages');
+        Route::get('frontpages/{id}', 'Admin\DashboardController@frontpages');
+        Route::post('frontpages', 'Admin\DashboardController@update_frontpages');
     });
 
     /**
      * Member routes
      */
     Route::group(['prefix' => 'member'], function () {
-
         Route::controllers([
             'subscription' => 'SubscriptionController'
         ]);
 
         Route::post('/referrals/send/', 'ReferralController@send')->name('send-referral');
-		Route::post('/referrals/apply/', 'ReferralController@apply')->name('apply-referral');
+        Route::post('/referrals/apply/', 'ReferralController@apply')->name('apply-referral');
 
         Route::get('/home', ['as' => 'member.home', 'uses' => 'MemberController@index']);
 
@@ -263,7 +252,7 @@ Route::group(['middleware' => ['web','auth.check_user']], function () {
         Route::get('/m/warehouse', ['as' => 'member.warehouse-old', 'uses' => 'NewMemberController@warehouse']);
         Route::post('/warehouse', ['as' => 'member.warehouse-new', 'uses' => 'NewMemberController@schedule_pickup_post']);
         Route::get('/comeinsoon', ['as' => 'member.warehouse-new', 'uses' => 'NewMemberController@warehouse']);
-		//Route::get('/warehouse1', ['as' => 'member.warehouse-new', 'uses' => 'MemberController@schedule_pickup_exp']);
+        //Route::get('/warehouse1', ['as' => 'member.warehouse-new', 'uses' => 'MemberController@schedule_pickup_exp']);
         //Route::get('/warehouse2', ['as' => 'member.warehouse.child', 'uses' => 'MemberController@warehouse_child']);
 
         Route::post('/home', 'MemberController@updateProfile2');
@@ -275,7 +264,7 @@ Route::group(['middleware' => ['web','auth.check_user']], function () {
         Route::put('/profile', ['as' => 'member.profile.update', 'uses' => 'MemberController@updateProfile']);
     });
 
-    Route::get('sitemap', function(){
+    Route::get('sitemap', function () {
 
         // create new sitemap object
         $sitemap = App::make("sitemap");
@@ -285,28 +274,22 @@ Route::group(['middleware' => ['web','auth.check_user']], function () {
         $sitemap->setCache('laravel.sitemap', 1440);
 
         // check if there is cached sitemap and build new only if is not
-        if (!$sitemap->isCached())
-        {
-
-
+        if (!$sitemap->isCached()) {
             $posts = DB::table('pages')->orderBy('created_at', 'desc')->get();
 
             // add every post to the sitemap
-            foreach ($posts as $post)
-            {
-                if($post->blog_post == 1){
+            foreach ($posts as $post) {
+                if ($post->blog_post == 1) {
                     $slug = "blog/".$post->slug;
-                }elseif($post->blog_post == 0){
+                } elseif ($post->blog_post == 0) {
                     $slug = "page/".$post->slug;
-                }
-                elseif($post->blog_post == 2){
+                } elseif ($post->blog_post == 2) {
                     $slug = "/";
                 }
-                $sitemap->add(URL::to($slug), $post->updated_at,'0.9', 'daily');
+                $sitemap->add(URL::to($slug), $post->updated_at, '0.9', 'daily');
             }
         }
 
         return $sitemap->render('xml');
-
     });
 });

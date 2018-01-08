@@ -22,14 +22,13 @@
 
     {!! Html::style('assets/dist/css/testimonial-slider.css') !!}
 
-	{!! Html::style('assets/dist/css/theme.css') !!}
+    {!! Html::style('assets/dist/css/theme.css') !!}
 
 
-	{!! Html::style('assets/dist/css/normalize.css') !!}
-	{!! Html::style('assets/dist/css/formstyle.css') !!}
+    {!! Html::style('assets/dist/css/normalize.css') !!}
+    {!! Html::style('assets/dist/css/formstyle.css') !!}
 
-	{!! Html::style('assets/dist/css/custom-navbar.css') !!}
-
+    {!! Html::style('assets/dist/css/custom-navbar.css') !!}
 
         @yield('css')
     <style>
@@ -59,14 +58,15 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="apple-touch-icon" href="/favicon.ico">
-    
-    <!-- Google Tag Manager -->
+
+<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M7FTTH4');</script>
 <!-- End Google Tag Manager -->
+
 </head>
 <body id="top">
 
@@ -88,12 +88,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- ============= Contact Section Starts Here =============================-->
 <span class="anchor" id="nav_contact" ></span>
 <section id="contact" >
-     <div class="container">
-	   <div class="row">
-	      <div class="col-md-3"><h3><a href="{{url('/contact-us')}}">請聯絡我們</a></h3></div>
-	      <div class="col-md-5 text-right"><h3><img src="/assets/dist/img/icon_email.png"><a href="mailto:{{ getSetting('INFO_EMAIL') }}">{{ getSetting('INFO_EMAIL') }}</a></h3></div>
-	      <div class="col-md-3 text-right"><h3><img src="/assets/dist/img/icon_phone.png">{{ getSetting('SUPPORT_PHONE') }}</h3></div>
-	 </div><!--/* Container*/-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"><h3><a href="{{url('/contact-us')}}">請聯絡我們</a></h3></div>
+            <div class="col-md-5 text-right"><h3><img src="/assets/dist/img/icon_email.png"><a href="mailto:{{ getSetting('INFO_EMAIL') }}">{{ getSetting('INFO_EMAIL') }}</a></h3></div>
+            <div class="col-md-3 text-right"><h3><img src="/assets/dist/img/icon_phone.png">{{ getSetting('SUPPORT_PHONE') }}</h3></div>
+        </div>
+    </div>
 </section>
 
 
@@ -106,107 +107,90 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <?php /*{!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') !!} */ ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 {!! Html::script('/assets/dist/js/jquery.blockUI.js') !!}
-
-
-	
-
-
-
 {!! Html::script('assets/plugins/jQueryUI/jquery-ui.min.js') !!}
         <!-- Bootstrap 3.3.5 -->
 {!! Html::script('assets/bootstrap/js/bootstrap.min.js') !!}
 {!! Html::script('assets/dist/js/jquery.validate.min.js') !!}
-
-
-
-
-
 {!! Html::script('assets/dist/js/wow.js') !!}
-
 {!! Html::script('assets/dist/js/form.js') !!}
 
-
-
-
-
 <script>
-		jQuery(document).ready(function($){
+        jQuery(document).ready(function($){
 
             $("form").submit(function(){
-                $.blockUI({ css: { 
-                    border: 'none', 
-                    padding: '15px', 
-                    backgroundColor: '#000', 
-                    '-webkit-border-radius': '10px', 
-                    '-moz-border-radius': '10px', 
-                    opacity: .5, 
-                    color: '#fff' 
-                } }); 
-         
-                setTimeout($.unblockUI, 5000);     
+                $.blockUI({ css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                } });
+
+                setTimeout($.unblockUI, 5000);
             });
-			// hide #back-top first
-			$("#back-top").hide();
+            // hide #back-top first
+            $("#back-top").hide();
 
-			// fade in #back-top
-			$(function () {
-				$(window).scroll(function () {
-					if ($(this).scrollTop() > 100) {
-						$('#back-top').fadeIn();
-					} else {
-						$('#back-top').fadeOut();
-					}
-				});
+            // fade in #back-top
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('#back-top').fadeIn();
+                    } else {
+                        $('#back-top').fadeOut();
+                    }
+                });
 
-				// scroll body to 0px on click
-				$('#back-top a').click(function () {
-					$('body,html').animate({
-						scrollTop: 0
-					}, 800);
-					return false;
-				});
-			});
+                // scroll body to 0px on click
+                $('#back-top a').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 800);
+                    return false;
+                });
+            });
 
-		});
-	</script>
-	<script>
-		/*----------------------------------------------------
-		 /*  Small Logo Upon Scroll
-		 /* ------------------------------------------------- */
-		jQuery(document).ready(function($) {
-			jQuery(window).scroll(function () {
-				if (jQuery(this).scrollTop() > 40) {
-					jQuery('.s5_logo').addClass('small-logo');
-					jQuery('.blackbar').slideUp();
-				} else {
-					jQuery('.s5_logo').removeClass('small-logo');
-					jQuery('.blackbar').slideDown();
-				}
-			});
+        });
 
-			$('*:not(nav)').click(function(){
-				if($('body').width() > 768 ) return;
-				if($('.navbar-collapse').css('display') !== 'none')
-					$('.navbar-collapse').collapse('toggle');
-			})
-		});
-	</script>
-	<script>
-		$(function() {
-		  $('a[href*="#"]:not([href="#"])').click(function() {
-			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			  var target = $(this.hash);
-			  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			  if (target.length) {
-				$('html, body').animate({
-				  scrollTop: target.offset().top
-				}, 1000);
-				return false;
-			  }
-			}
-		  });
-		});
-	</script>
+        /*----------------------------------------------------
+         /*  Small Logo Upon Scroll
+         /* ------------------------------------------------- */
+        jQuery(document).ready(function($) {
+            jQuery(window).scroll(function () {
+                if (jQuery(this).scrollTop() > 40) {
+                    jQuery('.s5_logo').addClass('small-logo');
+                    jQuery('.blackbar').slideUp();
+                } else {
+                    jQuery('.s5_logo').removeClass('small-logo');
+                    jQuery('.blackbar').slideDown();
+                }
+            });
+
+            $('*:not(nav)').click(function(){
+                if($('body').width() > 768 ) return;
+                if($('.navbar-collapse').css('display') !== 'none')
+                    $('.navbar-collapse').collapse('toggle');
+            })
+        });
+    </script>
+    <script>
+        $(function() {
+          $('a[href*="#"]:not([href="#"])').click(function() {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+              if (target.length) {
+                $('html, body').animate({
+                  scrollTop: target.offset().top
+                }, 1000);
+                return false;
+              }
+            }
+          });
+        });
+    </script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -227,84 +211,84 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     wow.init();
 
               </script>
-		<script>
-		   $('.carousel').carousel({
+        <script>
+           $('.carousel').carousel({
    interval: 6000
 });
 
 
 // hing side menu
         function showSideMenu(){
-        	//jQuery("div#ct-parallaxtop").css({"margin-right": jQuery("div#sideMenu").width() - 30});
-        	if(jQuery(this).width()<768){
-        		jQuery("div.boxful-header-promo").css({"right": jQuery("div#sideMenu").width() - 10});
-        	}else{
-        		jQuery("div#ct-parallaxtop").css({"margin-right": jQuery("div#sideMenu").width() - 30});
-        	}
-			jQuery("div#sideMenu").show("slide", { direction: "left" }, 150);
-			jQuery("div#blackLayer").show();
+            //jQuery("div#ct-parallaxtop").css({"margin-right": jQuery("div#sideMenu").width() - 30});
+            if(jQuery(this).width()<768){
+                jQuery("div.boxful-header-promo").css({"right": jQuery("div#sideMenu").width() - 10});
+            }else{
+                jQuery("div#ct-parallaxtop").css({"margin-right": jQuery("div#sideMenu").width() - 30});
+            }
+            jQuery("div#sideMenu").show("slide", { direction: "left" }, 150);
+            jQuery("div#blackLayer").show();
         }
 
         function hideSideMenu(){
-			jQuery("div.boxful-header-promo").css({"left": "0px"});
-			jQuery("div#ct-parallaxtop").css({"margin-left": "0px"});
-			jQuery("div#sideMenu").hide("slide", { direction: "left" }, 150);
-			jQuery("div#blackLayer").hide();
+            jQuery("div.boxful-header-promo").css({"left": "0px"});
+            jQuery("div#ct-parallaxtop").css({"margin-left": "0px"});
+            jQuery("div#sideMenu").hide("slide", { direction: "left" }, 150);
+            jQuery("div#blackLayer").hide();
         }
         // end
 
-		//hing 17/06
-			jQuery("a#sidebarAction").click(function(event){
-				event.preventDefault();
-				if(!jQuery("div#sideMenu").is(":visible")){
-				  	showSideMenu();
-				}else{
-					hideSideMenu();
-				}
-			});
+        //hing 17/06
+            jQuery("a#sidebarAction").click(function(event){
+                event.preventDefault();
+                if(!jQuery("div#sideMenu").is(":visible")){
+                      showSideMenu();
+                }else{
+                    hideSideMenu();
+                }
+            });
 
-			jQuery('div:not("div#sideMenu")').click(function(){
-				hideSideMenu();
-			})
+            jQuery('div:not("div#sideMenu")').click(function(){
+                hideSideMenu();
+            })
 
-			jQuery("div#blackLayer").click(function(event){
-				if(jQuery("div#sideMenu").is(":visible")){
-					hideSideMenu();
-				}
-			});
-
-
-			jQuery("a#closeSidemenu").click(function(event){
-				event.preventDefault();
-				if(jQuery("div#sideMenu").is(":visible")){
-					hideSideMenu();
-				}
-			});
-			// end
+            jQuery("div#blackLayer").click(function(event){
+                if(jQuery("div#sideMenu").is(":visible")){
+                    hideSideMenu();
+                }
+            });
 
 
-			jQuery(document).ready( function($) {
-				$( "#tabs" ).tabs();
-			  } );
+            jQuery("a#closeSidemenu").click(function(event){
+                event.preventDefault();
+                if(jQuery("div#sideMenu").is(":visible")){
+                    hideSideMenu();
+                }
+            });
+            // end
+
+
+            jQuery(document).ready( function($) {
+                $( "#tabs" ).tabs();
+              } );
 
 hideSideMenu();//Asif
-		</script>
-		
+        </script>
 
-			<script>
+
+            <script>
 jQuery(document).ready(function(){
- 
- setTimeout(function(){ 
 
- 
+ setTimeout(function(){
+
+
 
    $('body :not(script)').contents().filter(function() {
     return this.nodeType === 3;
   }).replaceWith(function() {
       return this.nodeValue.replace('折扣碼','優惠碼');
   });
-   
-   
+
+
 
  }, 50);
 
@@ -312,10 +296,10 @@ jQuery(document).ready(function(){
 });
 
 jQuery(document).ready(function($){
-	$('#edm-trigger').slideUp('fast');
-	$('.edm-container').slideToggle('fast');
-	$('header').css({position: 'relative'})
-	
+    $('#edm-trigger').slideUp('fast');
+    $('.edm-container').slideToggle('fast');
+    $('header').css({position: 'relative'})
+
     $('#edm-trigger').click(function(e){
         $(this).slideUp('fast');
         $('header').css({position: 'relative'})
@@ -331,8 +315,6 @@ jQuery(document).ready(function($){
     });
 });
 </script>
-
-
 
 @yield('js')
 

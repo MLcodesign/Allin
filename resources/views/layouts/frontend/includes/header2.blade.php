@@ -9,34 +9,29 @@
     <!--<div style="    background: #4e4744;color:#fff" class="container-fluid blackbar" id="topbar">-->
     <div style="    background: #4e4744;color:#fff" class="container-fluid" id="topbar">
         <div class="row">
-
             <div class="col-md-12 text-center" id="edm-trigger">
-		<span>
-		{{ $topbarnews->text }}
-		</span>
-
-
+        <span>
+        {{ $topbarnews->text }}
+        </span>
             </div>
         </div>
     </div>
 
     <div class="container-fluid" id="topbar">
         <div class="row">
-
             <div class="col-md-12 text-right table">
-			
-			<span>
-		   <a href="{{url('/ondemandstorage')}}">前往懶人倉</a>
-		</span>
                 <span>
-		   <a href="{{url('/ipano')}}" target="_blank">倉庫實景</a>
-		</span>
+                    <a href="{{url('/ondemandstorage')}}">前往懶人倉</a>
+                </span>
                 <span>
-		   <a href="{{url('/page/about-us')}}">關於 ALL IN</a>
-		</span>
+                    <a href="{{url('/ipanoallin/allin.html')}}" target="_blank">倉庫實景</a>
+                </span>
                 <span>
-		   <a href="{{url('/contact-us')}}">聯絡我們</a>
-		</span>
+                    <a href="{{url('/page/about-us')}}">關於 ALL IN</a>
+                </span>
+                <span>
+                    <a href="{{url('/contact-us')}}">聯絡我們</a>
+                </span>
             </div>
         </div>
     </div>
@@ -47,34 +42,44 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
                 選單
             </button>
-
         </div>
-        <a class="navbar-brand" href="/"><img src="/assets/dist/img/logo.png"
-                                              class="center-block wow wobble s5_logo s5_logo_path"
-                                              data-wow-duration="2s"></a>
+        <a class="navbar-brand" href="/">
+            <img src="/assets/dist/img/logo.png" class="center-block wow wobble s5_logo s5_logo_path" data-wow-duration="2s">
+        </a>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             @if (Auth::guest())
                 <ul class="nav navbar-nav navbar-left">
-
-                    <li class="p15"><img src="/assets/dist/img/icon_phone_20.png"><font color="#000000"><big><big>客服專線：02-29520000</big></big></font>
+                    <li class="p15">
+                        <img src="/assets/dist/img/icon_phone_20.png"><font color="#000000"><big><big>客服專線：02-29520000</big></big></font>
                     </li>
                 </ul>
             @endif
             @if (!Auth::guest())
                 <ul class="nav navbar-nav navbar-left">
-
-                    <li><a href="javascript:showSideMenu()">
-                            <div class="sidemenu-toggle"><span class="icon-bar"></span><span
-                                        class="icon-bar"></span><span class="icon-bar"></span></div>
-                            打開選單</a></li>
-                    <li><a href="{{url('/logout')}}"><img
-                                    src="/assets/dist/img/icon_login.png">會員登出({{ Auth::user()->email }})</a></li>
+                    <li>
+                        <a href="javascript:showSideMenu()">
+                            <div class="sidemenu-toggle">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </div>
+                            打開選單
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/logout')}}">
+                            <img src="/assets/dist/img/icon_login.png">會員登出({{ Auth::user()->email }})
+                        </a>
+                    </li>
                 </ul>
             @endif
             <ul class="nav navbar-nav navbar-right">
-                <li class="topfb"><a href="https://www.facebook.com/allinstorage/" target="_blank"><img
-                                src="/assets/dist/img/icon_fb2.png"></a></li>
+                <li class="topfb">
+                    <a href="https://www.facebook.com/allinstorage/" target="_blank">
+                        <img src="/assets/dist/img/icon_fb2.png">
+                    </a>
+                </li>
                 <li><a href="{{url('/latest-news')}}">最新消息</a></li>
                 <li><a href="{{url('#nav_service')}}">服務流程</a></li>
                 <li><a href="{{url('#nav_pricing')}}">收費方式</a></li>
@@ -126,16 +131,14 @@
                             </ul>
                         </div>
                     </li>
-
                 </ul>
             </div>
         </div>
     @endif
     <div class="qrcode">
-        <a href="https://line.me/R/ti/p/%40allin123" target="_blank"><img src="/assets/dist/img/lineallin.png"
-                                                                          class="img-responsive center-block"></a>
+        <a href="https://line.me/R/ti/p/%40allin123" target="_blank">
+          <img src="/assets/dist/img/lineallin.png" class="img-responsive center-block">
+        </a>
     </div>
     <!-- center collasped navbar-->
-
 </header>
-
